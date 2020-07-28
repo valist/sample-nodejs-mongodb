@@ -3,7 +3,7 @@ services:
     path: app
     public: true
     port: 8080
-    cmd: node /app.js
+    cmd: node app.js
     depends_on:
       - mongo
     environment:
