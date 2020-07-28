@@ -6,9 +6,10 @@ services:
     cmd: node /app.js
     depends_on:
       - mongo
+    environment:
+      - MONGODB_URL=mongodb://mongo:27017/test
   mongo:
     image: mongo:4.0
-    port: 27017
 steps:
   - name: mongodump
     path: mongodump
