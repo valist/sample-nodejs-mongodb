@@ -1,0 +1,21 @@
+services:
+  app:
+    path: app
+    public: true
+    port: 8080
+    cmd: node /app.js
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:4.0
+    port: 27017
+steps:
+  - name: mongodump
+    path: mongodump
+    out: /dump
+    cache: true
+  - name: load
+    service: mongo
+    copy:
+      - mongodump:/
+    cmd: mongorestore /dump
